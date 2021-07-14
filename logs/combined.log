@@ -11,3 +11,7 @@
 {"message":"App is running at port 3000","level":"info","service":"user-service"}
 {"message":"App is running at port 3000","level":"info","service":"user-service"}
 {"message":"App is running at port 3000","level":"info","service":"user-service"}
+{"message":"App is running at port 3000","level":"info","service":"user-service"}
+{"message":"App is running at port 3000","level":"info","service":"customer-tracker"}
+{"message":"App is running at port 3000","level":"info","service":"customer-tracker"}
+{"message":"App is running at port 3000","level":"info","service":"customer-tracker"}
