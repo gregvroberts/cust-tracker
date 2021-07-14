@@ -16,6 +16,7 @@ const logger = winston.createLogger({
         new winston.transports.File({ filename: 'logs/combined.log'}),
     ],
 });
+
 //
 // If we're not in production, then log to the `console` with the format:
 // `${info.level}: ${info.message} JSON.stringify({ ...rest })`
@@ -26,15 +27,16 @@ if (process.env.NODE_ENV !== 'production') {
     }));
 }
 
-const app = express();
+const app = express(); // Create our app
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-route(app);
+route(app);// Handle routes
 
-const port = 5000;
+// Set the port
+const port = process.env.APP_PORT || 3000;
 
 app.listen(port, () => {
-    console.log('App is now running at port ', port)
-})
+    logger.info(`App is running at port ${port}`);
+});
