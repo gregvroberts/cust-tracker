@@ -1,0 +1,184 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Customer-Tracker RESTful API",
+    "description": "A Node.js RESTful API built by Gregory Roberts.",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Customers",
+      "description": "API for customer records"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/customers": {
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Create new customer in the system",
+        "parameters": [
+          {
+            "name": "customer",
+            "in": "body",
+            "description": "Customer that we want to create",
+            "schema": {
+              "$ref": "#/definitions/CustomerCreate"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New customer is created",
+            "schema": {
+              "$ref": "#/definitions/CustomerOut"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "description": "Gets all the customers in the system",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "All customers returned",
+            "schema": {
+              "$ref": "#/definitions/CustomerOut"
+            }
+          }
+        }
+      }
+    },
+    "/customers/{customerId}": {
+      "parameters": [
+        {
+          "name": "customerId",
+          "in": "path",
+          "required": true,
+          "description": "ID of customers that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Get customer(s) with given ID",
+        "responses": {
+          "200": {
+            "description": "Customers are found",
+            "schema": {
+              "$ref": "#/definitions/CustomerOut"
+            }
+          }
+        }
+      }
+    },
+    "/customers/?city={cityString}": {
+      "parameters": [
+        {
+          "name": "cityString",
+          "in": "path",
+          "required": true,
+          "description": "City name of customers that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Get customer(s) with given City",
+        "responses": {
+          "200": {
+            "description": "Customers are found",
+            "schema": {
+              "$ref": "#/definitions/CustomerOut"
+            }
+          }
+        }
+      }
+    }
+
+  },
+  "definitions": {
+    "CustomerOut": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      }
+    },
+    "CustomerCreate": {
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

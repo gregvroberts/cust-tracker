@@ -1,0 +1,41 @@
+{
+  "development": {
+    "username": "root",
+    "password": "secret",
+    "database": "customer_tracker",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": "secret",
+    "database": "customer_tracker_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "production": {
+    "username": "root",
+    "password": "secret",
+    "database": "customer_tracker_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  }
+}
