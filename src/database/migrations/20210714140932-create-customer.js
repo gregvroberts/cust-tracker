@@ -1,4 +1,12 @@
-// This code has been ported from original defaults, to use es6 by Gregory Roberts
+// ################################################################
+// FileName: ./src/database/migrations/20210714140932-create-customer.js
+// Size: 54
+// Authors: Gregory Roberts
+// Created On: 07/14/21
+// Last Modified On: 07/14/21
+// Copy Rights: HEB, LP.
+// Description: This file handles creating the customers table
+// ################################################################
 
 export default {
   up: async (queryInterface, Sequelize) => {

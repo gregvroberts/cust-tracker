@@ -1,3 +1,13 @@
+// ################################################################
+// FileName: ./index.js
+// Size: 52
+// Authors: Gregory Roberts
+// Created On: 07/13/21
+// Last Modified On: 07/14/21
+// Copy Rights: HEB, LP.
+// Description: The main entrypoint for our application
+// ################################################################
+
 import express from 'express';
 import route from './src/routes'
 const winston = require('winston');

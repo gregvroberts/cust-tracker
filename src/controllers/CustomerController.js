@@ -1,3 +1,13 @@
+// ################################################################
+// FileName: ./src/controllers/CustomerController.js
+// Size: 91
+// Authors: Gregory Roberts
+// Created On: 07/14/21
+// Last Modified On: 07/14/21
+// Copy Rights: HEB, LP.
+// Description: Controller for our customers table/class
+// ################################################################
+
 import model from '../models';
 
 const { Customer } = model;

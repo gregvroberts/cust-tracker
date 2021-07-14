@@ -1,3 +1,13 @@
+// ################################################################
+// FileName: ./src/models/Customer.js
+// Size: 50
+// Authors: Gregory Roberts
+// Created On: 07/14/21
+// Last Modified On: 07/14/21
+// Copy Rights: HEB, LP.
+// Description: The Customer model definition file
+// ################################################################
+
 // This code has been ported from original defaults, to use es6 by Gregory Roberts
 import { Model } from 'sequelize';
 
