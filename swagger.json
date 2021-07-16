@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
-    "title": "Customer-Tracker RESTful API",
+    "version": "2.0.0",
+    "title": "Cust-Tracker RESTful API",
     "description": "A Node.js RESTful API built by Gregory Roberts.",
     "license": {
       "name": "MIT",
@@ -151,6 +151,12 @@
           "type": "string"
         },
         "zip": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
           "type": "string"
         }
       }

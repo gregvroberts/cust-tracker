@@ -10,7 +10,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import Sequelize from 'sequelize'
+import Sequelize from 'sequelize';
 import enVariables from '../config/config.json';
 
 const basename = path.basename(__filename);
@@ -19,6 +19,7 @@ const config = enVariables[env];
 const db = {};
 
 let sequelize;
+
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
@@ -35,7 +36,7 @@ fs
     });
 
   Object.keys(db).forEach(modelName => {
-    if (db[modelName].associate) { // associate might throw an error.
+    if (db[modelName].associate) {
       db[modelName].associate(db);
     }
   });

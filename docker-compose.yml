@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: secret
+    ports:
+      - '5432:5432'
+    volumes:
+      - cust-tracker:/var/lib/postgresql/data
+
+  cust-tracker:
+    build:
+      context: .
+    environment:
+      DB_SCHEMA: postgres
+      DB_USER: root
+      DB_PASSWORD: secret
+      DB_HOST: postgres
+    depends_on:
+      - postgres
+    ports:
+      - '3000:3000'
+
+volumes:
+  cust-tracker:

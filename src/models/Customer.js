@@ -15,6 +15,7 @@ const PROTECTED_ATTRIBUTES = [];
 
 export default (sequelize, DataTypes) => {
     class Customer extends Model {
+        // FOR FUTURE PROTECTED ATTRIBUTES
         toJSON() {
             // hide protected fields. Not used now but available for future if this challenge were expanded
             const attributes = { ...this.get() };
@@ -33,7 +34,7 @@ export default (sequelize, DataTypes) => {
         static associate(models) {
             // define associations here
         }
-    };
+    }
     Customer.init({
         first_name: DataTypes.STRING,
         last_name: DataTypes.STRING,

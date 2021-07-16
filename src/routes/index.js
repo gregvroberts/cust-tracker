@@ -1,18 +1,19 @@
 // ################################################################
 // FileName: ./src/routes/index.js
-// Size: 32
+// Size: 34
 // Authors: Gregory Roberts
 // Created On: 07/14/21
-// Last Modified On: 07/14/21
+// Last Modified On: 07/16/21
 // Copy Rights: HEB, LP.
 // Description: This is where our routes are defined
 // ################################################################
 
 import CustomerController from '../controllers/CustomerController'
 
-var swaggerUi = require('swagger-ui-express'),
-    swaggerDocument = require('../../swagger.json');
-
+// import swagger stuff
+//todo switch this to import
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../../swagger.json';
 
 export default (app) => {
     // Gets all customers. If ?city=... is included in the path, then it query for matching city string only
@@ -27,6 +28,6 @@ export default (app) => {
 
     // Our catch-all route for testing the installation.
     app.all('*', (request, response) => response.status(200).send({
-        message: 'Hello, ES Team!',
+        message: 'Hello, Interview Panel!',
     }));
 };

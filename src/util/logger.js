@@ -1,6 +1,5 @@
 import winston from 'winston';
 
-
 // Setup our logger with winston
 const logger = winston.createLogger({
     level: 'info',

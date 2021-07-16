@@ -3,12 +3,13 @@
 // Size: 91
 // Authors: Gregory Roberts
 // Created On: 07/14/21
-// Last Modified On: 07/14/21
+// Last Modified On: 07/16/21
 // Copy Rights: HEB, LP.
 // Description: Controller for our customers table/class
 // ################################################################
 
 import model from '../models';
+import logger from '../util/logger.js';
 
 const { Customer } = model;
 
@@ -33,52 +34,39 @@ export default {
                     {message: 'Could not perform operation at this time, kindly try again later.'});
         }
     },
-
     async getCustomers(request, response) {
-
-        // If city variable is defined in the URL, query by city string
-        if (typeof request.query.city !== 'undefined' && request.query.city) {
-            // Get the city string from the request variable
-            const custCity = request.query.city
-            try {
-                let customers = await Customer.findAll({where: { city: custCity}});
-                // If we have a ORM/DB return....
+        let customers; // Array of customers fetched from cust-tracker.customers table
+        // COMPLETED TD - 07-16-2021 Had 2 try-catch statements. Refactored to just one.
+        try {
+            // If city variable is defined in the URL, query by city string
+            if (typeof request.query.city !== 'undefined' && request.query.city) {
+                // Get the city string from the request variable
+                const custCity = request.query.city
+                customers = await Customer.findAll({where: { city: custCity}});
                 if (customers) {
                     return response.status(200).json(customers);
                 } // endif
-            } catch (e) {
-                console.log(e);
-                return response.status(500) // internal server error
-                    .send(
-                        {message: 'Could not perform operation at this time, kindly try again later.'});
-            } // endcatch
-        } else { // Otherwise, just get all customers without city specified
-            try {
+            } else {
                 // Get all the customers in the DB if the city string wasn't specified
-                let customers = await Customer.findAll();
+                customers = await Customer.findAll();
                 if (customers) {
                     return response.status(200).json(customers);
-                } else {
-                    return response.status(200).send({message: 'No customers found'});
-                }
-            } catch (e) {
-                console.log(e);
-                return response.status(500) // internal server error
-                    .send(
-                        {message: 'Could not perform operation at this time, kindly try again later.'});
-            } // endcatch
-        } // endelse
-
+                } // endif
+            }
+        } catch(e) {
+            logger.error(e);
+            return response.status(500) // internal server error
+                .send(
+                    {message: 'Could not perform operation at this time, kindly try again later.'});
+        }
     },
-
     async getCustomersByID(request, response) {
-
-        const custID = parseInt(request.params.id);
-
+        const custID = parseInt(request.params.id); // grab the param value provided by client
         try {
+            // Fetch the customer(s) row
             let customers = await Customer.findAll({where: { id: custID}});
             if (customers) {
-                return response.status(200).json(customers);
+                return response.status(200).json(customers); // return the customer(s)
             }
         } catch (e) {
             console.log(e);
@@ -87,5 +75,4 @@ export default {
                     {message: 'Could not perform operation at this time, kindly try again later.'});
         }
     }
-
 }

@@ -11,26 +11,15 @@
 import express from 'express';
 import route from './src/routes'
 import logger from './src/util/logger';
-//
-// // Setup our logger with winston
-// const logger = winston.createLogger({
-//     level: 'info',
-//     format: winston.format.json(),
-//     defaultMeta: { service: 'user-service' },
-//     transports: [
-//         //
-//         // - Write all logs with level `error` and below to `error.log`
-//         // - Write all logs with level `info` and below to `combined.log`
-//         //
-//         new winston.transports.File({filename: 'logs/error.log', level: 'error'}),
-//         new winston.transports.File({ filename: 'logs/combined.log'}),
-//     ],
-// });
+import dotenv from 'dotenv';
+
+dotenv.config() // initialize our dotenv package to sync .env variables
+
 
 const app = express(); // Create our app
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // helps keep from injections. Security measure
+app.use(express.json()); // Provides json support
 
 route(app);// Handle routes
 
