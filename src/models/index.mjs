@@ -1,5 +1,5 @@
 // ################################################################
-// FileName: ./src/models/index.js
+// FileName: ./src/models/index.mjs
 // Size: 46
 // Authors: Gregory Roberts
 // Created On: 07/14/21
@@ -11,7 +11,17 @@
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
-import enVariables from '../config/config.json';
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const enVariables = require('../config/config.json');
+
+// Recreate missing reference to __filename and __dirname
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 const basename = path.basename(__filename);
 const env = process.env.CUST_TRACKER_ENV || 'development';
@@ -28,7 +38,7 @@ if (config.use_env_variable) {
 
 fs
     .readdirSync(__dirname)
-    .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
+    .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.mjs'))
     .forEach(file => {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       const model = require(path.join(__dirname, file)).default(sequelize, Sequelize.DataTypes);

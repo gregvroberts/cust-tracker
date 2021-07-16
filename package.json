@@ -2,9 +2,10 @@
   "name": "cust-tracker",
   "version": "2.0.0",
   "description": "A simple RESTful API written in Node.js for tracking customers",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "dev": "nodemon --exec babel-node index.js",
+    "start": "node index.mjs",
+    "dev": "nodemon --exec babel-node index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

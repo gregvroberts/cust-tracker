@@ -1,5 +1,5 @@
 // ################################################################
-// FileName: ./index.js
+// FileName: ./index.mjs
 // Size: 52
 // Authors: Gregory Roberts
 // Created On: 07/13/21
@@ -9,8 +9,8 @@
 // ################################################################
 
 import express from 'express';
-import route from './src/routes'
-import logger from './src/util/logger';
+import route from './src/routes/index.mjs'
+import logger from './src/util/logger.mjs';
 import dotenv from 'dotenv';
 
 dotenv.config() // initialize our dotenv package to sync .env variables

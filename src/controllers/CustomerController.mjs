@@ -1,5 +1,5 @@
 // ################################################################
-// FileName: ./src/controllers/CustomerController.js
+// FileName: ./src/controllers/CustomerController.mjs
 // Size: 91
 // Authors: Gregory Roberts
 // Created On: 07/14/21
@@ -8,10 +8,11 @@
 // Description: Controller for our customers table/class
 // ################################################################
 
-import model from '../models';
-import logger from '../util/logger.js';
+import model from '../models/index.mjs';
+import logger from '../util/logger.mjs';
 
-const { Customer } = model;
+// const Customer = model;
+import Customer from '../models/Customer.mjs';
 
 export default {
     // createCustomer Creates a new row in the customer_tracker.Customers table.
@@ -42,7 +43,7 @@ export default {
             if (typeof request.query.city !== 'undefined' && request.query.city) {
                 // Get the city string from the request variable
                 const custCity = request.query.city
-                customers = await Customer.findAll({where: { city: custCity}});
+                customers = await model.Customer.findAll({where: { city: custCity}});
                 if (customers) {
                     return response.status(200).json(customers);
                 } // endif
@@ -63,6 +64,7 @@ export default {
     async getCustomersByID(request, response) {
         const custID = parseInt(request.params.id); // grab the param value provided by client
         try {
+            console.log(Customer);
             // Fetch the customer(s) row
             let customers = await Customer.findAll({where: { id: custID}});
             if (customers) {
@@ -72,7 +74,7 @@ export default {
             console.log(e);
             return response.status(500) // internal server error
                 .send(
-                    {message: 'Could not perform operation at this time, kindly try again later.'});
+                    {message: 'Could not perform operation at this time, kindly try again later.'+JSON.stringify(e)});
         }
     }
 }

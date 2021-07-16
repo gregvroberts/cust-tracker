@@ -1,5 +1,5 @@
 // ################################################################
-// FileName: ./src/routes/index.js
+// FileName: ./src/routes/index.mjs
 // Size: 34
 // Authors: Gregory Roberts
 // Created On: 07/14/21
@@ -8,12 +8,15 @@
 // Description: This is where our routes are defined
 // ################################################################
 
-import CustomerController from '../controllers/CustomerController'
+import CustomerController from '../controllers/CustomerController.mjs'
 
 // import swagger stuff
 //todo switch this to import
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../../swagger.json';
+
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const swaggerDocument = require('../../swagger.json');
 
 export default (app) => {
     // Gets all customers. If ?city=... is included in the path, then it query for matching city string only
